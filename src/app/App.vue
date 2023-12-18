@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted } from 'vue';
 import { RouterView } from 'vue-router';
 import { useScreenStore } from '@/entities/screen';
+import type HomePage from '@/pages/HomePage.vue';
 
 const screenStore = useScreenStore();
 const { setPlatform } = screenStore;
@@ -19,5 +20,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <RouterView />
+  <HomePage />
 </template>

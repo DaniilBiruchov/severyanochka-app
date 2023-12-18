@@ -1,1 +1,0 @@
-export { usePersonStore } from './model';
