@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
   interface Props {
-    tagName: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+    tagName: 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
     bold?: boolean;
     size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   }
@@ -34,12 +34,9 @@
 
 @media screen and (max-width: 768px) {
 .xs {font-size: 8px}
-.xs { font-size: 12px }
-
+.s { font-size: 12px }
 .m { font-size: 14px }
-
 .l { font-size: 20px }
-
 .xl { font-size: 32px }
 .h1 { font-size: 48px }
 .h2 { font-size: 36px }

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-  import Header from '@/widgets/header/index.vue'
+  import { Header } from '@/widgets/header'
 
 </script>
 
 <template>
   <main>
-    <Header></Header>
+    <Header />
   </main>
 </template>
