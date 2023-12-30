@@ -11,7 +11,7 @@ interface Props {
 
 const slots = useSlots();
 const props = defineProps<Props>();
-const { disabled = false, size = 'm', placeholder = '' } = props;
+const { disabled = false, size = 'm', placeholder = '', onSubmit = () => {} } = props;
 </script>
 
 <template>
@@ -24,16 +24,18 @@ const { disabled = false, size = 'm', placeholder = '' } = props;
   ]">
     <slot name="label"></slot>
     <div class="field__container">
-      <div v-if="slots.leftIcon" class="field__left-icon">
+      <div v-if="slots.leftIcon" class="field__left-icon" @click="onSubmit">
         <slot name="leftIcon"></slot>
       </div>
       <input
         class="field__input"
         type="text"
+        @input="(input) => onChange()"
+        @keyup.enter="onSubmit"
         :placeholder="placeholder"
         :disabled="disabled"
       />
-      <div v-if="slots.rightIcon" class="field__right-icon">
+      <div v-if="slots.rightIcon" class="field__right-icon" @click="onSubmit">
         <slot name="rightIcon"></slot>
       </div>
     </div>
