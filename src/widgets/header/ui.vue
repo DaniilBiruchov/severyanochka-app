@@ -83,6 +83,7 @@
   margin-left: 40px;
 }
 .header__userMenu {
+  width: 217px;
   margin-left: 32px;
 }
 </style>

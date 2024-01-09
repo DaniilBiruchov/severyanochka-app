@@ -19,7 +19,7 @@ const { data } = defineProps<Props>()
     <Avatar :img="data.avatar" />
     <Typography tagName="p" size="s">{{ data.name }}</Typography>
     <Button decoration="none">
-      <template #user-menu>
+      <template #leftIcon>
         <Icon type="user-menu" />
       </template>
     </Button>
@@ -29,5 +29,9 @@ const { data } = defineProps<Props>()
 <style scoped>
 .user-menu {
   display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  padding: 8px;
+  cursor: pointer;
 }
 </style>
