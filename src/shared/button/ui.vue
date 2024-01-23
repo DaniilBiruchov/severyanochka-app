@@ -10,7 +10,6 @@ interface Props {
 };
 const props = defineProps<Props>();
 const slots = useSlots()
-console.log(slots.default);
 
 const { color = 'primary', decoration = 'default', size = 'M', disabled = false } = props;
 const  classes = ['button', `size_${size}`, `decoration_${decoration}`, `color_${color}`]; 
@@ -20,6 +19,7 @@ const  classes = ['button', `size_${size}`, `decoration_${decoration}`, `color_$
   <button :class="classes" :disabled="disabled">
     <slot name="leftIcon"></slot>
     <Typography v-if="slots.default" tagName="p" size="s" class="button__text"><slot></slot></Typography>
+    <slot name="rightIcon"></slot>
   </button>
 </template>
  
@@ -51,6 +51,10 @@ const  classes = ['button', `size_${size}`, `decoration_${decoration}`, `color_$
 }
 .button.color_secondary {
   background-color: var(--main-secondary);
+  color: var(--main-on-secondary);
+}
+.button.color_primary {
+  background-color: var(--main-primary);
   color: var(--main-on-secondary);
 }
 .button.decoration_none {

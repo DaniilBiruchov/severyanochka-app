@@ -1,12 +1,19 @@
 <script lang="ts" setup>
-  import { reactive } from 'vue'
+  import { reactive, ref } from 'vue'
   import { Container } from '@/shared/container'
+  import { DropdownMenu } from '@/features/header/dropdown-menu'
   import { Logo } from '@/shared/logo'
   import { Button } from '@/shared/button'
   import { Icon } from '@/shared/icon'
   import { Field } from '@/shared/field'
   import { Navigation } from '@/features/header/navigation'
   import { UserMenu } from '@/features/header/user-menu'
+  import { usePersonStore } from '@/entities/person'
+  import { storeToRefs } from 'pinia'
+
+  const personStore = usePersonStore()
+  const { setIsAuth } = personStore
+  const { person, isAuth } = storeToRefs(personStore)
 
   const navItems = reactive([
     {label: 'Избранное', icon: 'favorite', count: 0, link: '/favorite'},
@@ -15,25 +22,32 @@
   ])
   const infUser = reactive({
     avatar: '',
-    name: 'Алексей',
-    menu: []
+    name: person.value.name,
+    menu: [
+      { label: 'Профиль', link: '/profile'},
+      { label: 'Выйти', action: 'logout'},
+    ]
   })
+  const dropdownIsHidden = ref<boolean>(true)
   const onChangeSearch = (value: string) => console.log(value); 
   const onSearch = () => console.log('SEND TO SIRVIR');
+  const onIsAuth = () => setIsAuth(true)
+  const toggleDropdownActive = () => dropdownIsHidden.value = !dropdownIsHidden.value
 </script>
 
 
 <template>
   <header class="header">
-    <Container class="header__container">
-      <Logo orientation="horizontally" type="text" color bgColor />
+    <div class="header__content">
+      <Container class="header__container">
+      <Logo orientation="horizontally" type="text" :color="true" :bgColor="true" />
       <div class="header__catalog">
-        <Button size="M" color="secondary" >
-        <template #[`leftIcon`]>
-          <Icon type="menu" />
-        </template>
-        Каталог
-      </Button>
+        <Button size="M" color="secondary" @mouseenter="toggleDropdownActive" >
+          <template #leftIcon>
+            <Icon type="menu" />
+          </template>
+          Каталог
+        </Button>
       </div>
       <div class="header__search">
         <Field 
@@ -53,24 +67,38 @@
         <Navigation :data="navItems"></Navigation>
       </div>
       <div class="header__userMenu">
-        <UserMenu :data="infUser" />
+        <UserMenu v-if="isAuth" :data="infUser" />
+        <Button v-else size="M" @click="onIsAuth" class='header__login-btn' >
+          <template #rightIcon>
+            <Icon type="entrance" />
+          </template>
+          Войти
+        </Button>
       </div>
     </Container>
+    </div>
+    <DropdownMenu v-if="!dropdownIsHidden" @mouseleave="toggleDropdownActive" />
   </header>
 </template>
 
 <style scoped>
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: var(--main-surface);
+  box-shadow: var(--shadow-secondary-s);
+}
 .header__container {
   display: flex;
   align-items: center;
   height: 72px;
 }
-.header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  background: var(--surface);
-  box-shadow: var(--shadow-secondary-s);
+.header__content {
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-default-s);
+  background: var(--main-surface);
 }
 .header__catalog {
   width: 140px;
@@ -83,7 +111,16 @@
   margin-left: 40px;
 }
 .header__userMenu {
+  position: relative;
   width: 217px;
   margin-left: 32px;
+}
+.header__userMenu:deep(.user-menu) {
+  position: absolute;
+  top: -28px;
+  width: 100%;
+}
+.header__login-btn {
+  width: 157px;
 }
 </style>
