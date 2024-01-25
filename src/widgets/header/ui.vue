@@ -26,7 +26,7 @@ const navItems = reactive([
   { label: 'Корзина', icon: 'basket', count: 1, link: '/basket' }
 ])
 const infUser = reactive({
-  avatar: '',
+  avatar: person.value.avatar,
   name: person.value.name,
   menu: [
     { label: 'Профиль', link: '/profile' },
@@ -90,7 +90,7 @@ const toggleDropdownActive = () => (dropdownIsHidden.value = !dropdownIsHidden.v
           </Field>
         </div>
         <div class="header__navigation">
-          <Navigation :data="navItems"></Navigation>
+          <Navigation :data="navItems" />
         </div>
         <div class="header__userMenu">
           <UserMenu v-if="isAuth" :data="infUser" />
