@@ -37,8 +37,8 @@ const onClickItem = (value: string) => {
 <template>
   <div :class="['user-menu', `is-open_${isOpen}`]">
     <Avatar :img="data.avatar" @click="toggleMenu" />
-    <Typography @click="toggleMenu" tagName="p" size="s">{{ data.name }}</Typography>
-    <Button @click="toggleMenu" decoration="none">
+    <Typography @click="toggleMenu" class="user-menu__name" tagName="p" size="s">{{ data.name }}</Typography>
+    <Button @click="toggleMenu" class="user-menu__button" decoration="none">
       <template #leftIcon>
         <Icon type="user-menu" />
       </template>
@@ -71,8 +71,21 @@ const onClickItem = (value: string) => {
   padding: 8px;
 }
 .user-menu__list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-column: 1 / 4;
+}
+
+@media screen and (max-width: 1207px) {
+  .user-menu {
+    grid-template-columns: 1fr;
+  }
+  .user-menu__name,
+  .user-menu__button {
+    display: none;
+  }
+  .user-menu__list {
+    grid-column: unset;
+  }
 }
 </style>
