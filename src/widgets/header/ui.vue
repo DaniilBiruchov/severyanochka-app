@@ -169,11 +169,10 @@ const toggleDropdownActive = () => (dropdownIsHidden.value = !dropdownIsHidden.v
     width: max-content;
   }
   .header__search {
-    width: max-content;
     margin-left: unset;
   }
   .header__userMenu {
-    width: unset;
+    width: 56px;
   }
   .header__userMenu:deep(.user-menu) {
     width: max-content;
@@ -192,5 +191,6 @@ const toggleDropdownActive = () => (dropdownIsHidden.value = !dropdownIsHidden.v
   .header__logo:deep(svg) {
     width: 39px
   }
+  
 }
 </style>

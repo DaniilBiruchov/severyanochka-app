@@ -19,7 +19,6 @@
 }
 .bold { font-weight: 700 }
 .xs {font-size: 12px}
-.xs { font-size: 16px }
 
 .m { font-size: 18px }
 
@@ -32,7 +31,7 @@
 .h4 { font-size: 24px }
 .h5 { font-size: 18px }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 .xs {font-size: 8px}
 .s { font-size: 12px }
 .m { font-size: 14px }

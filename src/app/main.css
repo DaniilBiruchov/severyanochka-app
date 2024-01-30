@@ -2,6 +2,7 @@
 
 :root {
   /* colors */
+  --main-page-background: #FBF8EC;
   --main-background: #F4F4F2;
   --main-on-background: #291E0F;
   --main-surface: #FFF;
@@ -14,6 +15,7 @@
   --grayscale-light: #BFBFBF;
   --grayscale-hard: #8F8F8F;
   --grayscale-hardest: #606060;
+  --main-footer: #F9F4E2;
   --pallete-success: #008C49;
   --pallete-info: #1CB9FC;
   --pallete-warning: #FCA21C;
